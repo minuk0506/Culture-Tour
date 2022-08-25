@@ -9,9 +9,14 @@
 		</div>
 		<div th:each="MSMARTGLR : ${MSMARTGLRS}" th:object="${MSMARTGLR}">
 			<div th:attr="data-msmArtGlrNm=*{msmArtGlrNm}">
-				<p>시설이름 :</p>
-				<p th:text="*{msmArtGlrNm}">
-				<p>
+				<h3>시설이름 : <span th:text="*{msmArtGlrNm}"></span></h3>
+				<p>구분 : <span th:text="*{operationRuleNm}"></span></p>
+				<p>주소 : <span th:text="*{addrRoad}"></span></p>
+				<p>평일관람시간 : <span th:text="*{weekdayBeginTime}"></span> ~ <span th:text="*{weekdayEndTime}"></span></p>
+				<p>공휴일관람시간 : <span th:text="*{holidayBeginTime}"></span> ~ <span th:text="*{holidayEndTime}"></span></p>
+				<p>휴관정보 : <span th:text="*{closeInfo}"></span></p>
+				<p>전화번호 : <span th:text="*{operationAgcTel}"></span></p>
+				<p>홈페이지 : <span th:text="*{homePage}"></span></p>
 			</div>
 		</div>
 	</div>

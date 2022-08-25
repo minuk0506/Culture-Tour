@@ -62,12 +62,15 @@ address {
 
 .slide-menu{
 	display: none;
+    position: absolute;
+    left: -50%;
 }
 
 .slide-menu.clicked{
-	display: inline-block;
-	position: fixed;
-	width: 200px;
-	height: 100vh;
-	border: 1px solid black;
+	display: flex;
+    position: fixed;
+    height: 100vh;
+    border: 1px solid black;
+    z-index: 10;
+    flex-direction: column;
 }

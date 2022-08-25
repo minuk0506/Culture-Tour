@@ -9,9 +9,25 @@
 		</div>
 		<div th:each="TOUR : ${TOURS}" th:object="${TOUR}">
 			<div th:attr="data-tourDestNm=*{tourDestNm}">
-				<p>관광지이름 :</p>
-				<p th:text="*{tourDestNm}">
-				<p>
+				<h3>관광지이름 : <span th:text="*{tourDestNm}"></span></h3>
+				<p>관광지 구분 : <span th:text="*{operationRuleNm}"></span></p>
+				<p>주소 : <span th:text="*{addrRoad}"></span></p>
+				<p>관리기관 : <span th:text="*{mngAgcNm}"></span></p>
+				<p>전화번호 : <span th:text="*{mngAgcTel}"></span></p>
+				<p>관광지소개 : <span th:text="*{tourDestIntro}"></span></p>
+			</div>
+		</div>
+		<div th:each="RUIN : ${RUINS}" th:object="${RUIN}">
+			<div th:attr="data-localCultHeritNm=*{localCultHeritNm}">
+				<h3>향토문화유적명 : <span th:text="*{localCultHeritNm}"></span></h3>
+				<p>향토문화유적구분 : <span th:text="*{classifiLocalCultHeri}"></span></p>
+				<p>향토문화유적종류 : <span th:text="*{localCultHeritTypeNm}"></span></p>
+				<p>주소 : <span th:text="*{addrRoad}"></span></p>
+				<p>조성시대 : <span th:text="*{eraCreation}"></span></p>
+				<p>관리기관 : <span th:text="*{mngAgcNm}"></span></p>
+				<p>관리기관전화번호 : <span th:text="*{mngAgcTel}"></span></p>
+				<p>이미지 정보 : <span th:text="*{photo}"></span></p>
+				<p>향토문화유적 소개 : <span th:text="*{localCultHeritIntro}"></span></p>
 			</div>
 		</div>
 	</div>

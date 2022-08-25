@@ -3,11 +3,10 @@ package com.minuk.cul.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import com.minuk.cul.config.QualifierConfig;
 import com.minuk.cul.model.EventVO;
@@ -16,16 +15,15 @@ import com.minuk.cul.model.MsmArtGlrVO;
 import com.minuk.cul.model.RuinsVO;
 import com.minuk.cul.model.SearchVO;
 import com.minuk.cul.model.TourVO;
-import com.minuk.cul.model.root.GetTour;
 import com.minuk.cul.service.SearchService;
-import com.minuk.cul.utils.HttpRequestInterceptorV1;
 
+import lombok.extern.slf4j.Slf4j;
+
+
+@Slf4j
 @Service(QualifierConfig.SERVICE.SEARCH_V1)
 public class SearchServiceImplV1 implements SearchService {
 
-	@Autowired
-	private TourServiceImplV1 tourServiceImplV1;
-	
 	// 한 페이지에 보여질 데이터 리스트 개수
 	private static final long LIST_PER_PAGE = 10;
 
@@ -39,6 +37,14 @@ public class SearchServiceImplV1 implements SearchService {
 		search = search == null ? "" : search;
 		searchPage.setSearch(search);
 
+		log.debug("서치데이터 {}",search);
+		
+		MultiValueMap<String, String> eventMulMap = new LinkedMultiValueMap<String, String>();
+		MultiValueMap<String, String> festivalMulMap = new LinkedMultiValueMap<String, String>();
+		MultiValueMap<String, String> msmartglrMulMap = new LinkedMultiValueMap<String, String>();
+		MultiValueMap<String, String> ruinsMulMap = new LinkedMultiValueMap<String, String>();
+		MultiValueMap<String, String> tourMulMap = new LinkedMultiValueMap<String, String>();
+		eventMulMap.add(search, search);
 		// 검색어 조건에 맞는 모든 데이터를 일단 select
 		List<EventVO> eventList = new ArrayList<EventVO>();
 		List<FestivalVO> festivalList = new ArrayList<FestivalVO>();

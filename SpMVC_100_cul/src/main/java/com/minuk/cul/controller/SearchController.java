@@ -3,6 +3,8 @@ package com.minuk.cul.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +33,7 @@ public class SearchController {
 	@RequestMapping(value = "/search", method=RequestMethod.GET)
 	public String search(Model model , 
 			@RequestParam(name = "pageno",required = false, defaultValue = "1") int pageno,
-			SearchVO searchPage) {
+			SearchVO searchPage, HttpSession httpSession) {
 		
 		searchPage.setCurrentPageNo(pageno);
 		// 페이지 계산
