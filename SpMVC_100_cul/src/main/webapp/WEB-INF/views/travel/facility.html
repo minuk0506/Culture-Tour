@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="htpp://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<th:block layout:fragment="content">
+	<div class="container">
+		<div>
+			<h1>시설정보</h1>
+		</div>
+		<div th:each="MSMARTGLR : ${MSMARTGLRS}" th:object="${MSMARTGLR}">
+			<div th:attr="data-msmArtGlrNm=*{msmArtGlrNm}">
+				<p>시설이름 :</p>
+				<p th:text="*{msmArtGlrNm}">
+				<p>
+			</div>
+		</div>
+	</div>

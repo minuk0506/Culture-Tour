@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="htpp://www.ultraq.net.nz/thymeleaf/layout"
+	>
+<head th:replace="~{includes/include-head}">
+</head>
+<body>
+	<nav th:replace="~{includes/include-header :: nav}"></nav>
+	<section layout:fragment="content"></section>
+	<footer>
+		<address>CopyRight &copy; minuk</address>
+	</footer>
+</body>

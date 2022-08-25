@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="htpp://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<th:block layout:fragment="content">
+	<div class="container">
+		<div>
+			<h1>관광지정보</h1>
+		</div>
+		<div th:each="TOUR : ${TOURS}" th:object="${TOUR}">
+			<div th:attr="data-tourDestNm=*{tourDestNm}">
+				<p>관광지이름 :</p>
+				<p th:text="*{tourDestNm}">
+				<p>
+			</div>
+		</div>
+	</div>

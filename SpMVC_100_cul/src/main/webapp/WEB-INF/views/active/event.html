@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="htpp://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<th:block layout:fragment="content" class="container">
+	<div class="container">
+		<div>
+			<h1>행사, 공연정보</h1>
+		</div>
+		<div th:each="EVENT : ${EVENTS}" th:object="${EVENT}">
+			<div th:attr="data-eventNm=*{eventNm}">
+				<p>행사, 공연 :</p>
+				<p th:text="*{eventNm}">
+				<p>
+			</div>
+		</div>
+	</div>
