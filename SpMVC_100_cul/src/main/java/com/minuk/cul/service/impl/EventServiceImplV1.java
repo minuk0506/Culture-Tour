@@ -92,6 +92,6 @@ public class EventServiceImplV1 implements EventService{
 		log.debug("수신된 데이터 {}", resEventObject.getBody().EventBaseInfo);
 		
 		return resEventObject.getBody().EventBaseInfo;
-	}
+	} 
 
 }

@@ -1,5 +1,6 @@
 package com.minuk.cul.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -38,17 +39,17 @@ public class SearchController {
 		log.debug("페이지 계산 {}",searchPage.toString());
 		
 		// 데이터 가져오기
-//		List<EventVO> eventList = searchService.eventSearchAndPage(searchPage);
-//		List<FestivalVO> festivalList = searchService.festivalSearchAndPage(searchPage);
-//		List<MsmArtGlrVO> msmartglrList = searchService.msmArtGlrSearchAndPage(searchPage);
-//		List<RuinsVO> ruinsList = searchService.ruinsSearchAndPage(searchPage);
-//		List<TourVO> tourList = searchService.tourSearchAndPage(searchPage);
+		List<EventVO> eventList = searchService.eventSearchAndPage(searchPage);
+		List<FestivalVO> festivalList = searchService.festivalSearchAndPage(searchPage);
+		List<MsmArtGlrVO> msmartglrList = searchService.msmArtGlrSearchAndPage(searchPage);
+		List<RuinsVO> ruinsList = searchService.ruinsSearchAndPage(searchPage);
+		List<TourVO> tourList = searchService.tourSearchAndPage(searchPage);
 		
-//		model.addAttribute("EVENT", eventList);
-//		model.addAttribute("FESTIVAL", festivalList);
-//		model.addAttribute("MSMARTGLR", msmartglrList);
-//		model.addAttribute("RUINS", ruinsList);
-//		model.addAttribute("TOUR", tourList);
+		model.addAttribute("EVENT", eventList);
+		model.addAttribute("FESTIVAL", festivalList);
+		model.addAttribute("MSMARTGLR", msmartglrList);
+		model.addAttribute("RUINS", ruinsList);
+		model.addAttribute("TOUR", tourList);
 		
 		return "/search";
 	}

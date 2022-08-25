@@ -1,8 +1,11 @@
 package com.minuk.cul.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -13,14 +16,15 @@ import com.minuk.cul.model.MsmArtGlrVO;
 import com.minuk.cul.model.RuinsVO;
 import com.minuk.cul.model.SearchVO;
 import com.minuk.cul.model.TourVO;
-import com.minuk.cul.persistance.SearchDto;
+import com.minuk.cul.model.root.GetTour;
 import com.minuk.cul.service.SearchService;
+import com.minuk.cul.utils.HttpRequestInterceptorV1;
 
 @Service(QualifierConfig.SERVICE.SEARCH_V1)
 public class SearchServiceImplV1 implements SearchService {
 
 	@Autowired
-	private SearchDto searchDto;
+	private TourServiceImplV1 tourServiceImplV1;
 	
 	// 한 페이지에 보여질 데이터 리스트 개수
 	private static final long LIST_PER_PAGE = 10;
@@ -36,11 +40,11 @@ public class SearchServiceImplV1 implements SearchService {
 		searchPage.setSearch(search);
 
 		// 검색어 조건에 맞는 모든 데이터를 일단 select
-		List<EventVO> eventList = searchDto.eventSearchAndPage(searchPage);
-		List<FestivalVO> festivalList = searchDto.festivalSearchAndPage(searchPage);
-		List<MsmArtGlrVO> msmartglrList = searchDto.msmArtGlrSearchAndPage(searchPage);
-		List<RuinsVO> ruinsList = searchDto.ruinsSearchAndPage(searchPage);
-		List<TourVO> tourList = searchDto.tourSearchAndPage(searchPage);
+		List<EventVO> eventList = new ArrayList<EventVO>();
+		List<FestivalVO> festivalList = new ArrayList<FestivalVO>();
+		List<MsmArtGlrVO> msmartglrList = new ArrayList<MsmArtGlrVO>();
+		List<RuinsVO> ruinsList = new ArrayList<RuinsVO>();
+		List<TourVO> tourList = new ArrayList<TourVO>();
 
 		long totalCount = eventList.size() + festivalList.size() + msmartglrList.size() + ruinsList.size()
 				+ tourList.size();
@@ -81,6 +85,36 @@ public class SearchServiceImplV1 implements SearchService {
 
 		// JSP 로 보내기 위해서 model 에 담기
 		model.addAttribute("PAGE", searchPage);
+	}
+
+	@Override
+	public List<EventVO> eventSearchAndPage(SearchVO searchPage) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<FestivalVO> festivalSearchAndPage(SearchVO searchPage) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MsmArtGlrVO> msmArtGlrSearchAndPage(SearchVO searchPage) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<RuinsVO> ruinsSearchAndPage(SearchVO searchPage) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<TourVO> tourSearchAndPage(SearchVO searchPage) {
+		
+		return null;
 	}
 
 
