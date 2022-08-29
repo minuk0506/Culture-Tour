@@ -79,18 +79,12 @@ public class MsmartglrServiceImplV1 implements MsmartglrService{
 		ResponseEntity<String> resString = null;
 		resString = restTemp.exchange(msmartglrRestURI, HttpMethod.GET, headerEntity, String.class);
 		
-		log.debug("=".repeat(100));
-		log.debug("{}",resString.getBody());
-		log.debug("=".repeat(100));
-		
 		// 수신된 데이터를 VO 로 변환하기
 		ResponseEntity<GetMsmartglr> resMsmartglrObject = null;
 		
 		// RestTemplate 이 수신한 데이터를 중간에 가로채서 조작하기
 		restTemp.getInterceptors().add(new HttpRequestInterceptorV1());
 		resMsmartglrObject = restTemp.exchange(msmartglrRestURI, HttpMethod.GET, headerEntity, GetMsmartglr.class);
-		
-		log.debug("수신된 데이터 {}", resMsmartglrObject.getBody().MsmArtGlrBaseInfo);
 		
 		return resMsmartglrObject.getBody().MsmArtGlrBaseInfo;
 	}

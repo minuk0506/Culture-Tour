@@ -78,18 +78,12 @@ public class TourServiceImplV1 implements TourService{
 		ResponseEntity<String> resString = null;
 		resString = restTemp.exchange(tourRestURI, HttpMethod.GET, headerEntity, String.class);
 		
-		log.debug("Tour =".repeat(100));
-		log.debug("Tour {}",resString.getBody());
-		log.debug("Tour =".repeat(100));
-		
 		// 수신된 데이터를 VO 로 변환하기
 		ResponseEntity<GetTour> resTourObject = null;
 		
 		// RestTemplate 이 수신한 데이터를 중간에 가로채서 조작하기
 		restTemp.getInterceptors().add(new HttpRequestInterceptorV1());
 		resTourObject = restTemp.exchange(tourRestURI, HttpMethod.GET, headerEntity, GetTour.class);
-		
-		log.debug("Tour 수신된 데이터 {}", resTourObject.getBody().TourDestBaseInfo);
 		
 		return resTourObject.getBody().TourDestBaseInfo;
 	}

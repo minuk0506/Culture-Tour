@@ -78,18 +78,12 @@ public class EventServiceImplV1 implements EventService{
 		ResponseEntity<String> resString = null;
 		resString = restTemp.exchange(eventRestURI, HttpMethod.GET, headerEntity, String.class);
 		
-		log.debug("=".repeat(100));
-		log.debug("{}",resString.getBody());
-		log.debug("=".repeat(100));
-		
 		// 수신된 데이터를 VO 로 변환하기
 		ResponseEntity<GetEvent> resEventObject = null;
 		
 		// RestTemplate 이 수신한 데이터를 중간에 가로채서 조작하기
 		restTemp.getInterceptors().add(new HttpRequestInterceptorV1());
 		resEventObject = restTemp.exchange(eventRestURI, HttpMethod.GET, headerEntity, GetEvent.class);
-		
-		log.debug("수신된 데이터 {}", resEventObject.getBody().EventBaseInfo);
 		
 		return resEventObject.getBody().EventBaseInfo;
 	} 
