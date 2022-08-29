@@ -48,4 +48,15 @@ public class EventController {
 		
 		return "/active/festival";
 	}
+	
+	@RequestMapping(value="/festival", method=RequestMethod.GET)
+	public String festival(Model model) {
+		String festivalQueryStr = festivalService.FestivalQueryStr(null);
+		festivalService.getFestivalItems(festivalQueryStr);
+		log.debug("Festival 받은 데이터 {}",festivalQueryStr);
+		List<FestivalVO> FestivalJson = festivalService.getFestivalItems(festivalQueryStr);
+		model.addAttribute("FESTIVALS", FestivalJson);
+		
+		return "/active/festival";
+	}
 }

@@ -50,4 +50,9 @@ public class TourController {
 		
 		return "/travel/ruins";
 	}
+	@RequestMapping(value="/map", method=RequestMethod.GET)
+	public String map(Model model) {
+
+		return "/travel/map";
+	}
 }

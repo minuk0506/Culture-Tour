@@ -22,6 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
       url += "active/event";
     } else if (div.innerText === "다양한 시설") {
       url += "travel/facility";
+    } else if (div.innerText === "지도로 찾아보기") {
+      url += "travel/map";
+    } else if (div.innerText === "캘린더로 찾기") {
+      url += "travel/calendar";
     }
 
     document.location.href = url;
