@@ -2,17 +2,40 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="htpp://www.ultraq.net.nz/thymeleaf/layout">
 <nav th:fragment="nav">
-	<ul>
-		<li><span class="material-icons"> density_medium </span></li>
-		<li>Culture of 광주</li>
-		<li><form><input name="search" type="search"></form></li>
-	</ul>
+	<div class="ul">
+		<div class="li"><span class="material-icons"> density_medium </span></div>
+		<div class="li"><p>Culture of 광주</p></div>
+		<div class="searchbar li"><input id="search" name="search" type="search"></div>
+		<div class="right-nav">
+		<div class="right-btn li"><span class="material-icons">login</span></div>
+		<div class="right-btn li"><span class="material-icons">logout</span></div>
+		<div class="right-btn li"><span class="material-icons">person</span></div>
+		</div>
+	</div>
 	<div class="slide-menu w3-light-grey">
-		<div class="top-menu">홈</div>
-		<div class="top-menu">광주 여행</div>
-		<div class="top-menu">광주의 즐길거리</div>
-		<div class="top-menu">다양한 시설</div>
-		<div class="top-menu">지도로 찾아보기</div>
-		<div class="top-menu">캘린더로 찾아보기</div>
+		<div class="top-menu">
+			<div class="material-icons menu-icon">home</div>
+			<div><p>홈</p></div>
+		</div>
+		<div class="top-menu">
+			<div class="material-icons menu-icon">tour</div>
+			<div><p>광주 여행</p></div>
+		</div>
+		<div class="top-menu">
+			<div class="material-icons menu-icon">festival</div>
+			<div><p>광주의 즐길거리</p></div>
+		</div>
+		<div class="top-menu">
+			<div class="material-icons menu-icon">museum</div>
+			<div><p>다양한 시설</p></div>
+		</div>
+		<div class="top-menu">
+			<div class="material-icons menu-icon">map</div>
+			<div><p>지도로 찾아보기</p></div>
+		</div>
+		<div class="top-menu">
+			<div class="material-icons menu-icon">event</div>
+			<div><p>캘린더로 찾아보기</p></div>
+		</div>
 	</div>
 </nav>

@@ -1,23 +1,24 @@
 package com.minuk.cul.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.minuk.cul.model.EventVO;
 import com.minuk.cul.model.FestivalVO;
 import com.minuk.cul.model.MsmArtGlrVO;
 import com.minuk.cul.model.RuinsVO;
-import com.minuk.cul.model.SearchVO;
 import com.minuk.cul.model.TourVO;
-import com.minuk.cul.service.SearchService;
+import com.minuk.cul.service.EventService;
+import com.minuk.cul.service.FestivalService;
+import com.minuk.cul.service.MsmartglrService;
+import com.minuk.cul.service.RuinsService;
+import com.minuk.cul.service.TourService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,34 +26,57 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class SearchController {
 
-	private final SearchService searchService;
-	public SearchController(SearchService searchService) {
-		this.searchService = searchService;
-	}
+	private final EventService eventService;
+	private final FestivalService festivalService;
+	private final MsmartglrService msmartglrService;
+	private final RuinsService ruinsService;
+	private final TourService tourService;
 	
+	public SearchController(EventService eventService, FestivalService festivalService,
+			MsmartglrService msmartglrService, RuinsService ruinsService, TourService tourService) {
+		this.eventService = eventService;
+		this.festivalService = festivalService;
+		this.msmartglrService = msmartglrService;
+		this.ruinsService = ruinsService;
+		this.tourService = tourService;
+	}
+
+	@ResponseBody
 	@RequestMapping(value = "/search", method=RequestMethod.GET)
-	public String search(Model model , 
-			@RequestParam(name = "pageno",required = false, defaultValue = "1") int pageno,
-			SearchVO searchPage, HttpSession httpSession) {
+	public String search(Model model, @RequestParam("search") String search) {
 		
-		searchPage.setCurrentPageNo(pageno);
-		// 페이지 계산
-		searchService.searchAndPage(model,searchPage);
-		log.debug("페이지 계산 {}",searchPage.toString());
+		log.debug("서치 로그 {}",search);
+		String eventQueryStr = eventService.EventQueryStr(null);
+		String festivalQueryStr = festivalService.FestivalQueryStr(null);
+		String msmartglrQueryStr = msmartglrService.MsmartglrQueryStr(null);
+		String ruinsQueryStr = ruinsService.RuinsQueryStr(null);
+		String tourQueryStr = tourService.tourQueryStr(null);
 		
-		// 데이터 가져오기
-		List<EventVO> eventList = searchService.eventSearchAndPage(searchPage);
-		List<FestivalVO> festivalList = searchService.festivalSearchAndPage(searchPage);
-		List<MsmArtGlrVO> msmartglrList = searchService.msmArtGlrSearchAndPage(searchPage);
-		List<RuinsVO> ruinsList = searchService.ruinsSearchAndPage(searchPage);
-		List<TourVO> tourList = searchService.tourSearchAndPage(searchPage);
+		eventService.getEventItems(eventQueryStr);
+		festivalService.getFestivalItems(festivalQueryStr);
+		msmartglrService.getMsmartglrItems(msmartglrQueryStr);
+		ruinsService.getRuinsItems(ruinsQueryStr);
+		tourService.getTourItems(tourQueryStr);
 		
-		model.addAttribute("EVENT", eventList);
-		model.addAttribute("FESTIVAL", festivalList);
-		model.addAttribute("MSMARTGLR", msmartglrList);
+		List<EventVO> eventList = eventService.getEventItems(eventQueryStr);
+		List<FestivalVO> festivalList = festivalService.getFestivalItems(festivalQueryStr);
+		List<MsmArtGlrVO> msmartglrList = msmartglrService.getMsmartglrItems(msmartglrQueryStr);
+		List<RuinsVO> ruinsList = ruinsService.getRuinsItems(ruinsQueryStr);
+		List<TourVO> tourList = tourService.getTourItems(tourQueryStr);
+		
+//		Map<String, Object> eventList = SearchService.eventList(eventQueryStr);
+//		Map<String, Object> festivalList = festivalService.getFestivalItems(festivalQueryStr);
+//		Map<String, Object> msmartglrList = msmartglrService.getMsmartglrItems(msmartglrQueryStr);
+//		Map<String, Object> ruinsList = ruinsService.getRuinsItems(ruinsQueryStr);
+//		Map<String, Object> tourList = tourService.getTourItems(tourQueryStr);
+		
+		model.addAttribute("EVENTS", eventList);
+		model.addAttribute("FESTIVALS", festivalList);
+		model.addAttribute("MSMARTGLRS", msmartglrList);
 		model.addAttribute("RUINS", ruinsList);
-		model.addAttribute("TOUR", tourList);
+		model.addAttribute("TOURS", tourList);
+		model.addAttribute("SEARCH", search);
 		
-		return "/search";
+		return "/search/search";
 	}
 }

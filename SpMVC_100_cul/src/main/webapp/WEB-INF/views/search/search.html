@@ -7,11 +7,60 @@
 		<div>
 			<h1>검색결과</h1>
 		</div>
-		<div th:each="SEARCHDATA : ${EVENT, FESTIVAL, MSMARTGLR, RUINS, TOUR}" th:object="${SEARCHDATA}">
-			<div th:attr="data-tourDestNm=*{tourDestNm}, data-msmArtGlrNm=*{msmArtGlrNm}, data-eventNm=*{eventNm}, data-festivalNm=*{festivalNm}, data-localCultHeritNm=*{localCultHeritNm}">
-				<p>시설이름 :</p>
-				<p th:text="*{tourDestNm, localCultHeritNm, msmArtGlrNm, eventNm, festivalNm}">
-				<p>
+		<div th:each="EVENT : ${EVENTS}" th:object="${EVENT}">
+			<div th:attr="data-eventNm=*{eventNm}">
+				<h3>행사, 공연 : <span th:text="*{eventNm}"></span></h3>
+				<p>개최장소 : <span th:text="*{eventVenue}"></span></p>
+				<p>진행기간 : <span th:text="*{eventBeginDate}"></span> ~ <span th:text="*{eventEndDate}"></span></p>
+				<p>축제 내용 : <span th:text="*{eventInfo}"></span></p>
+				<p>전화번호 : <span th:text="*{tel}"></span></p>
+				<p>홈페이지주소 : <span th:text="*{homePage}"></span></p>
+			</div>
+		</div>
+		<div th:each="FESTIVAL : ${FESTIVALS}" th:object="${FESTIVAL}">
+			<div th:attr="data-festivalNm=*{festivalNm}">
+				<h3>축제 : <span th:text="*{festivalNm}"></span></h3>
+				<p>개최장소 : <span th:text="*{festivalVenue}"></span></p>
+				<p>진행기간 : <span th:text="*{festivalBeginDate}"></span> ~ <span th:text="*{festivalEndDate}"></span></p>
+				<p>축제 내용 : <span th:text="*{festivalInfo}"></span></p>
+				<p>전화번호 : <span th:text="*{tel}"></span></p>
+				<p>홈페이지주소 : <span th:text="*{homePage}"></span></p>
+				<p>관련정보 : <span th:text="*{relatedInfo}"></span></p>
+			</div>
+		</div>
+		<div th:each="MSMARTGLR : ${MSMARTGLRS}" th:object="${MSMARTGLR}">
+			<div th:attr="data-msmArtGlrNm=*{msmArtGlrNm}">
+				<h3>시설이름 : <span th:text="*{msmArtGlrNm}"></span></h3>
+				<p>구분 : <span th:text="*{operationRuleNm}"></span></p>
+				<p>주소 : <span th:text="*{addrRoad}"></span></p>
+				<p>평일관람시간 : <span th:text="*{weekdayBeginTime}"></span> ~ <span th:text="*{weekdayEndTime}"></span></p>
+				<p>공휴일관람시간 : <span th:text="*{holidayBeginTime}"></span> ~ <span th:text="*{holidayEndTime}"></span></p>
+				<p>휴관정보 : <span th:text="*{closeInfo}"></span></p>
+				<p>전화번호 : <span th:text="*{operationAgcTel}"></span></p>
+				<p>홈페이지 : <span th:text="*{homePage}"></span></p>
+			</div>
+		</div>
+		<div th:each="TOUR : ${TOURS}" th:object="${TOUR}">
+			<div th:attr="data-tourDestNm=*{tourDestNm}">
+				<h3>관광지이름 : <span th:text="*{tourDestNm}"></span></h3>
+				<p>관광지 구분 : <span th:text="*{operationRuleNm}"></span></p>
+				<p>주소 : <span th:text="*{addrRoad}"></span></p>
+				<p>관리기관 : <span th:text="*{mngAgcNm}"></span></p>
+				<p>전화번호 : <span th:text="*{mngAgcTel}"></span></p>
+				<p>관광지소개 : <span th:text="*{tourDestIntro}"></span></p>
+			</div>
+		</div>
+		<div th:each="RUIN : ${RUINS}" th:object="${RUIN}">
+			<div th:attr="data-localCultHeritNm=*{localCultHeritNm}">
+				<h3>향토문화유적명 : <span th:text="*{localCultHeritNm}"></span></h3>
+				<p>향토문화유적구분 : <span th:text="*{classifiLocalCultHeri}"></span></p>
+				<p>향토문화유적종류 : <span th:text="*{localCultHeritTypeNm}"></span></p>
+				<p>주소 : <span th:text="*{addrRoad}"></span></p>
+				<p>조성시대 : <span th:text="*{eraCreation}"></span></p>
+				<p>관리기관 : <span th:text="*{mngAgcNm}"></span></p>
+				<p>관리기관전화번호 : <span th:text="*{mngAgcTel}"></span></p>
+				<p>이미지 정보 : <span th:text="*{photo}"></span></p>
+				<p>향토문화유적 소개 : <span th:text="*{localCultHeritIntro}"></span></p>
 			</div>
 		</div>
 	</div>

@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const divs = document.querySelectorAll("div div.top-menu");
   const hambtn = document.querySelector("nav li span.material-icons");
   const slidemenu = document.querySelector("div.slide-menu");
-  const search = document.querySelector("form input");
   let url = `${rootPath}`;
+
   hambtn.addEventListener("click", () => {
     console.log("menu clicked");
     if (slidemenu.classList.contains("clicked")) {
@@ -23,23 +23,14 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (div.innerText === "다양한 시설") {
       url += "travel/facility";
     } else if (div.innerText === "지도로 찾아보기") {
-      url += "travel/map";
+      url += "/map";
     } else if (div.innerText === "캘린더로 찾기") {
-      url += "travel/calendar";
+      url += "/calendar";
     }
 
     document.location.href = url;
   };
-  if (search) {
-    search.addEventListener("keypress", async (e) => {
-      if (e.keyCode === 13) {
-        console.log("keypress 먹힘");
-        url += "search/search";
-      }
-      document.location.href = url;
-      search.addEventListener("click", e.target);
-    });
-  }
+
   // querySelectAll 을 통해서 배열로 가져온 li tag 들에
   // 공통 event 설정하기
   for (const div of divs) {
