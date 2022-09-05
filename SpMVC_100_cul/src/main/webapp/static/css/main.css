@@ -9,6 +9,7 @@
 html {
 	width: 100vw;
 	height: 100vh;
+	box-sizing: border-box;
 }
 
 body {
@@ -16,6 +17,7 @@ body {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
+	box-sizing: border-box;
 }
 
 header {
@@ -27,10 +29,12 @@ header {
 	background-color: green;
 	text-shadow: 1px 1px 1px black;
 	color: white;
+	box-sizing: border-box;
 }
 
 nav {
 	width: 100%;
+	box-sizing: border-box;
 }
 
 nav .ul {
@@ -38,6 +42,7 @@ nav .ul {
 	display: flex;
 	background-color: #333;
 	color: white;
+	box-sizing: border-box;
 }
 
 nav .li {
@@ -55,6 +60,11 @@ nav .li:hover {
 
 nav .li:nth-of-type(1) {
 	margin-left: 5px;
+	box-sizing: border-box;
+}
+
+nav .li:last-of-type {
+	margin-right: 20px;
 }
 
 footer {
@@ -70,6 +80,7 @@ address {
 .container {
 	width: 100%;
 	flex-grow: 1;
+	box-sizing: border-box;
 }
 
 .searchbar {
@@ -79,10 +90,13 @@ address {
 	margin: 0;
 	padding: 0;
 	margin-left: auto;
+	box-sizing: border-box;
 }
-#search{
+
+#search {
 	width: 30vw;
 }
+
 .right-nav {
 	display: flex;
 	margin-left: auto;
@@ -114,19 +128,29 @@ address {
 	padding-right: 3px;
 }
 
-@
-keyframes fadeInLeft { 0% {
+@keyframes fadeInLeft { 
+0% {
 	transform: translate3d(-100%, 0, 0);
 }
-
 to {
 	transform: translateZ(0);
 }
 }
-.home-Container{
+.home-Container {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: space-around;
+	flex-direction: row;
 }
-.dataBox{
-	
+
+.home-Container>div {
+	box-sizing: border-box;
+	border-right: 1px solid #777;
+	padding: 10px;
+    flex: 1;
+    margin-top: 10px;
+    margin-bottom: auto;
+}
+.home-Container>div:last-of-type {
+	border:none;
 }
