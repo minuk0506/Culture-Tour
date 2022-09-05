@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const divs = document.querySelectorAll("div div.top-menu");
-  const hambtn = document.querySelector("nav li span.material-icons");
+  const hambtn = document.querySelector(".ham-btn");
   const slidemenu = document.querySelector("div.slide-menu");
   let url = `${rootPath}`;
 

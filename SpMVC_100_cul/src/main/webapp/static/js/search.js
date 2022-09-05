@@ -7,13 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.keyCode === 13) {
       console.log("keypress 먹힘");
       document.location.href = searchUrl + "search?search=" + search;
-      // const searchData = (search) => {
-      //   fetch(`searchUrl/search?search=${search}`)
-      //     .then((res) => res.text())
-      //     .catch((err) => {
-      //       console.log(err);
-      //     });
-      // };
+      const searchData = (search) => {
+        fetch(`searchUrl/search?search=${search}`)
+          .then((res) => res.text(search))
+          .catch((err) => {
+            console.log(err);
+          });
+      };
     }
   });
 });
