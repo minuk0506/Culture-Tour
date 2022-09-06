@@ -1,0 +1,24 @@
+@charset "UTF-8";
+form.join {
+  width: 70%;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+form.join input,
+form.join button {
+  margin: 5px;
+}
+form.join label {
+  font-weight: bold;
+}
+form.login {
+  width: 60%;
+  margin: 10px auto;
+  padding: 10px;
+}
+
+form.login input,
+form.login button {
+  margin: 10px;
+}

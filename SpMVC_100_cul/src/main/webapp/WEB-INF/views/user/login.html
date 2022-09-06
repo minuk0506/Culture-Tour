@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="htpp://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<th:block layout:fragment="content">
+	<div class="container">
+		<form method=POST class="w3-container login w3-card-4 login">
+			<h2 class="w3-text-dark-grey">로그인</h2>
+
+			<div th:if="${error == 'LOGIN_NEED'}">
+				<div class="w3-red w3-padding-16">* 로그인이 필요한 서비스입니다</div>
+			</div>
+			<div th:if="${error == 'USERNAME_FAIL'}">
+				<div class="w3-red w3-padding-16">* ID 가 없음. 회원가입을 먼저 하세요</div>
+			</div>
+			<div th:if="${error == 'PASSWORD_FAIL'}">
+				<div class="w3-red w3-padding-16">* 비밀번호가 틀렸습니다</div>
+			</div>
+
+			<lable class="w3-text-dark-grey"> <strong>USERNAME(ID)</strong></lable>
+			<input name="username" placeholder="USERNAME"
+				class="w3-input w3-border"> 
+			<label class="w3-text-dark-grey"><strong>비밀번호</strong></label>
+			<input name="password" placeholder="PASSWORD"
+				class="w3-input w3-border">
+
+			<button type="button" class="w3-button w3-dark-grey btn-login">로그인</button>
+		</form>
+	</div>

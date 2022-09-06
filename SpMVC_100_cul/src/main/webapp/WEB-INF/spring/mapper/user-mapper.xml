@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.minuk.cul.persistance.UserDao">
+
+	<select id="selectAll" resultType="UserVO">
+		SELECT * FROM tbl_culUsers
+	</select>
+	<select id="findById" resultType="UserVO">
+		SELECT * FROM tbl_culUsers
+		WHERE username = #{username}
+	</select>
+
+	<select id="findByName" resultType="UserVO">
+		SELECT * FROM tbl_culUsers
+		WHERE name = #{name}
+	</select>
+
+	<select id="findByEmail" resultType="UserVO">
+		SELECT * FROM tbl_culUsers
+		WHERE email = #{email}
+	</select>
+
+	<select id="findByNickName" resultType="UserVO">
+		SELECT * FROM tbl_culUsers
+		WHERE nickname = #{nickname}
+	</select>
+
+	<insert id="insert" parameterType="UserVO">
+		INSERT INTO tbl_culUsers(
+			username,
+			password,
+			email,
+			name,
+			nickname,
+			role
+		) VALUES (
+			#{username},
+			#{password},
+			#{email},
+			#{name},
+			#{nickname},
+			#{role}
+		)
+	</insert>
+
+	<update id="update" parameterType="UserVO">
+		UPDATE tbl_culUsers SET
+			password = #{password},
+			email = #{email},
+			name = #{name},
+			nickname = #{nickname},
+			role = #{role}
+		WHERE username = #{username}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM tbl_culUsers WHERE username = #{username}
+	</delete>
+
+	<select id="create_user_table">
+		CREATE TABLE IF NOT EXISTS tbl_culUsers(
+		username VARCHAR(20) PRIMARY KEY,
+		password VARCHAR(125) NOT NULL,
+		email VARCHAR(125) NOT NULL UNIQUE,
+		name VARCHAR(125),
+		nickname VARCHAR(125),
+		role VARCHAR(5)
+		)
+	</select>
+</mapper> 

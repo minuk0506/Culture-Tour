@@ -1,6 +1,8 @@
 package com.minuk.cul.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,8 +34,8 @@ public class EventController {
 		String eventQueryStr = eventService.EventQueryStr(null);
 		eventService.getEventItems(eventQueryStr);
 		log.debug("Event 받은 데이터 {}",eventQueryStr);
-		List<EventVO> EventJson = eventService.getEventItems(eventQueryStr);
-		model.addAttribute("EVENTS", EventJson);
+		List<EventVO> eventJson = eventService.getEventItems(eventQueryStr);
+		model.addAttribute("EVENTS", eventJson);
 		return "/active/event";
 	}
 	
