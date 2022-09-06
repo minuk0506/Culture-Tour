@@ -13,12 +13,15 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import com.minuk.cul.config.ApiConfig;
 import com.minuk.cul.config.QualifierConfig;
 import com.minuk.cul.model.MsmArtGlrVO;
 import com.minuk.cul.model.root.GetMsmartglr;
+import com.minuk.cul.model.root.GetRuins;
 import com.minuk.cul.model.root.GetTour;
 import com.minuk.cul.service.MsmartglrService;
 import com.minuk.cul.utils.HttpRequestInterceptorV1;
@@ -53,6 +56,7 @@ public class MsmartglrServiceImplV1 implements MsmartglrService{
 		return msmartglrQueryStr;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<MsmArtGlrVO> getMsmartglrItems(String queryString) {
 		
@@ -78,14 +82,15 @@ public class MsmartglrServiceImplV1 implements MsmartglrService{
 		// 데이터가 수신되는지 확인하는 절차
 		ResponseEntity<String> resString = null;
 		resString = restTemp.exchange(msmartglrRestURI, HttpMethod.GET, headerEntity, String.class);
-		
 		// 수신된 데이터를 VO 로 변환하기
 		ResponseEntity<GetMsmartglr> resMsmartglrObject = null;
 		
 		// RestTemplate 이 수신한 데이터를 중간에 가로채서 조작하기
 		restTemp.getInterceptors().add(new HttpRequestInterceptorV1());
 		resMsmartglrObject = restTemp.exchange(msmartglrRestURI, HttpMethod.GET, headerEntity, GetMsmartglr.class);
-		
+		MultiValueMap<String, Object> msmMap = new LinkedMultiValueMap<>();
+		msmMap = (MultiValueMap<String, Object>) restTemp.exchange(msmartglrRestURI, HttpMethod.GET, headerEntity, GetMsmartglr.class);
+		log.debug("맵 로그 {}", msmMap);
 		return resMsmartglrObject.getBody().MsmArtGlrBaseInfo;
 	}
 

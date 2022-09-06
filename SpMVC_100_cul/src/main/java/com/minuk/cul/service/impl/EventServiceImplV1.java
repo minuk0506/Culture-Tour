@@ -77,7 +77,6 @@ public class EventServiceImplV1 implements EventService{
 		// 데이터가 수신되는지 확인하는 절차
 		ResponseEntity<String> resString = null;
 		resString = restTemp.exchange(eventRestURI, HttpMethod.GET, headerEntity, String.class);
-		
 		// 수신된 데이터를 VO 로 변환하기
 		ResponseEntity<GetEvent> resEventObject = null;
 		

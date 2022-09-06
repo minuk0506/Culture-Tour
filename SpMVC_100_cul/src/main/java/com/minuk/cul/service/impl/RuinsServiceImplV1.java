@@ -77,7 +77,6 @@ public class RuinsServiceImplV1 implements RuinsService{
 		// 데이터가 수신되는지 확인하는 절차
 		ResponseEntity<String> resString = null;
 		resString = restTemp.exchange(RuinsRestURI, HttpMethod.GET, headerEntity, String.class);
-		
 		// 수신된 데이터를 VO 로 변환하기
 		ResponseEntity<GetRuins> resRuinsObject = null;
 		

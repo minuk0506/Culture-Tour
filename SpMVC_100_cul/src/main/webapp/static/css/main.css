@@ -116,9 +116,10 @@ address {
   border: 1px solid black;
   z-index: 10;
   flex-direction: column;
-  animation-name: fadeInLeft;
-  animation-duration: 0.5s;
+  transition: all 0.5s;
+  transform: rotateX(200px);
 }
+
 .top-menu {
   padding: 5px;
   display: flex;
@@ -143,11 +144,6 @@ address {
 }
 .home-Container > div:last-of-type {
   border: none;
-}
-.moreView:hover {
-  cursor: pointer;
-  border-bottom: 1px solid black;
-  box-sizing: border-box;
 }
 .invisible {
   display: none;

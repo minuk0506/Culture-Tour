@@ -8,13 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const tourHref = document.querySelector(".tourHref");
   const ruinsHref = document.querySelector(".ruinsHref");
   const home = document.querySelector(".logo");
-  const rightBtn = document.querySelector(".right-btn");
   const join = document.querySelector(".join");
   const login = document.querySelector(".login");
   const logout = document.querySelector(".logout");
   const mypage = document.querySelector(".mypage");
-  let url = `${rootPath}`;
   const userSession = '<%=(String)session.getAttribute("USER")%>';
+  let url = `${rootPath}`;
+
   hambtn.addEventListener("click", () => {
     console.log("menu clicked");
     if (slidemenu.classList.contains("clicked")) {
@@ -23,21 +23,20 @@ document.addEventListener("DOMContentLoaded", () => {
       slidemenu.classList.add("clicked");
     }
   });
-  rightBtn.addEventListener("click", () => {
-    if (userSession == null) {
-      logout.classList.add("invisible");
-      mypage.classList.add("invisible");
 
-      join.classList.remove("invisible");
-      login.classList.remove("invisible");
-    } else if (userSession != null) {
-      join.classList.add("invisible");
-      login.classList.add("invisible");
+  if (userSession == null) {
+    logout.classList.add("invisible");
+    mypage.classList.add("invisible");
 
-      logout.classList.remove("invisible");
-      mypage.classList.remove("invisible");
-    }
-  });
+    join.classList.remove("invisible");
+    login.classList.remove("invisible");
+  } else if (userSession != null) {
+    join.classList.add("invisible");
+    login.classList.add("invisible");
+
+    logout.classList.remove("invisible");
+    mypage.classList.remove("invisible");
+  }
 
   eventHref.addEventListener("click", () => {
     document.location.href = url += "active/event";

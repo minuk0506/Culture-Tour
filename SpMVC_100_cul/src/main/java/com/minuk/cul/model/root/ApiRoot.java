@@ -21,5 +21,5 @@ public class ApiRoot {
 	public GetFestival getFestival;
 	
 	@JsonProperty("getEvent")
-	public GetEvent getEvent;
+	public GetEvent getEvent;	
 }

@@ -215,13 +215,17 @@ public class SearchServiceImplV1 implements SearchService {
 		
 		// RestTemplate 이 수신한 데이터를 중간에 가로채서 조작하기
 		restTemp.getInterceptors().add(new HttpRequestInterceptorV1());
+		
 		resRuinsObject = restTemp.exchange(RuinsRestURI, HttpMethod.GET, headerEntity, GetRuins.class);
 		
-		MultiValueMap<String, Object> ruinsMap = new LinkedMultiValueMap<>();
-		
+//		MultiValueMap<String, Object> ruinsMap = new LinkedMultiValueMap<>();
+//		ruinsMap = (MultiValueMap<String, Object>) restTemp.exchange(RuinsRestURI, HttpMethod.GET, headerEntity, GetRuins.class);
+//		log.debug("맵 로그 {}");
 		return resRuinsObject.getBody().LocalCultHeritBaseInfo;
 	}
-
+	
+	
+	
 	@Override
 	public List<TourVO> getTourItems(String queryString) {
 		// TODO Auto-generated method stub

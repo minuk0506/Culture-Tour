@@ -77,7 +77,6 @@ public class TourServiceImplV1 implements TourService{
 		// 데이터가 수신되는지 확인하는 절차
 		ResponseEntity<String> resString = null;
 		resString = restTemp.exchange(tourRestURI, HttpMethod.GET, headerEntity, String.class);
-		
 		// 수신된 데이터를 VO 로 변환하기
 		ResponseEntity<GetTour> resTourObject = null;
 		
