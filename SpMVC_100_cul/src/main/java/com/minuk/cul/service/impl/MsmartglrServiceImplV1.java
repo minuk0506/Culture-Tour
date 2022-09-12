@@ -5,7 +5,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -13,16 +15,15 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.minuk.cul.config.ApiConfig;
 import com.minuk.cul.config.QualifierConfig;
 import com.minuk.cul.model.MsmArtGlrVO;
 import com.minuk.cul.model.root.GetMsmartglr;
-import com.minuk.cul.model.root.GetRuins;
-import com.minuk.cul.model.root.GetTour;
 import com.minuk.cul.service.MsmartglrService;
 import com.minuk.cul.utils.HttpRequestInterceptorV1;
 
@@ -53,10 +54,23 @@ public class MsmartglrServiceImplV1 implements MsmartglrService{
 		msmartglrQueryStr += encodeParams;
 		log.debug("쿼리 문자열 {}", msmartglrQueryStr);
 		
+//		ObjectMapper mapper = new ObjectMapper();
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		try {
+//			map = mapper.readValue(msmartglrQueryStr.toString(),  new TypeReference <Map<String,Object>>(){});
+//			log.debug("일단 맵 로그 {}",map);
+//		} catch (JsonProcessingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		Map<String, Object> getItem = (Map<String, Object>) map.get("MsmArtGlrBaseInfo");
+//		log.debug("겟아이템 맵 로그 {}",getItem);
+//		List<Map<String , Object>> itemList = (List<Map<String, Object>>) getItem.get("MsmArtGlrBaseInfo");
+//		
+//		log.debug("박물관 맵 로그 {}",itemList);
 		return msmartglrQueryStr;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<MsmArtGlrVO> getMsmartglrItems(String queryString) {
 		
@@ -88,9 +102,16 @@ public class MsmartglrServiceImplV1 implements MsmartglrService{
 		// RestTemplate 이 수신한 데이터를 중간에 가로채서 조작하기
 		restTemp.getInterceptors().add(new HttpRequestInterceptorV1());
 		resMsmartglrObject = restTemp.exchange(msmartglrRestURI, HttpMethod.GET, headerEntity, GetMsmartglr.class);
-		MultiValueMap<String, Object> msmMap = new LinkedMultiValueMap<>();
-		msmMap = (MultiValueMap<String, Object>) restTemp.exchange(msmartglrRestURI, HttpMethod.GET, headerEntity, GetMsmartglr.class);
-		log.debug("맵 로그 {}", msmMap);
+		
+//		ObjectMapper mapper = new ObjectMapper();
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map = objectMapper.readValue(MsmartglrQueryStr(queryString).toString(),  new TypeReference <Map<String,Object>>(){});
+//		List<Map<String , Object>> itemList = (List<Map<String, Object>>) MsmArtGlrVO.class;
+//		log.debug("박물관 맵 로그 {}",map);
+		
+//		MultiValueMap<String, Object> msmMap = new LinkedMultiValueMap<>();
+//		msmMap = (MultiValueMap<String, Object>) restTemp.exchange(msmartglrRestURI, HttpMethod.GET, headerEntity, GetMsmartglr.class);
+//		log.debug("맵 로그 {}", msmMap);
 		return resMsmartglrObject.getBody().MsmArtGlrBaseInfo;
 	}
 
